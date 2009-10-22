@@ -71,7 +71,7 @@ class MainWindow:
     
     def refresh_Activate(self, widget):
         kt = KvitterThread()
-        kt.setTwitterUser('SineX')
+        kt.setTwitterUser(self.username)
         if self.timelineNoteBook.get_current_page() == 0:
             kt.setFunction(self.api.GetFriendsTimeline, "GetFriendsTimeline")
             kt.setCallback(functions.updateTimeLineListStore, self.privTimeLineListStore)
@@ -108,8 +108,9 @@ class MainWindow:
         self.statusEntry.set_text("@%s: " % who)
         self.statusEntry.set_position(len(who)+3)
 
-    def show(self, api):
+    def show(self, api, username):
         self.api = api
-
+        self.username = username
+        self.refresh_Activate(None)
 
     
