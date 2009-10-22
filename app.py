@@ -12,6 +12,6 @@ class KvitterApp:
 
 
     def run(self):
-        self.main_window.show(self.api)
+        self.main_window.show(self.api, self.username_str)
         pass
 
