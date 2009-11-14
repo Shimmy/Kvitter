@@ -1,4 +1,4 @@
-import os, base64, re, hashlib
+import os, os.path, base64, re, hashlib
 import Image, gtk, pango
 import StringIO, urllib
 import timesince, time, cgi
@@ -36,8 +36,11 @@ def get_ext(url):
 
 
 def fetchImageFromUrl(url):
+    tmp_path = "/tmp/kvitter/"
     try:
-        #url = "http://api.iglaset.se/resizely/round/5/?url=%s" % url
+        _mkdir(tmp_path)
+            
+        url = "http://api.iglaset.se/resizely/small/?url=%s" % url
         ext = get_ext(url)
         source = base64.urlsafe_b64encode(hashlib.sha224(url).hexdigest())
         dest = "%s%s" % ('/tmp/kvitter/', source)
@@ -69,3 +72,23 @@ def Image_to_GdkPixbuf (image):
     pixbuf = loader.get_pixbuf ()
     loader.close ()
     return pixbuf
+
+def _mkdir(newdir):
+    """works the way a good mkdir should :)
+        - already exists, silently complete
+        - regular file in the way, raise an exception
+        - parent directory(ies) does not exist, make them as well
+    """
+    if os.path.isdir(newdir):
+        pass
+    elif os.path.isfile(newdir):
+        raise OSError("a file with the same name as the desired " \
+                      "dir, '%s', already exists." % newdir)
+    else:
+        head, tail = os.path.split(newdir)
+        if head and not os.path.isdir(head):
+            _mkdir(head)
+        #print "_mkdir %s" % repr(newdir)
+        if tail:
+            os.mkdir(newdir)
+
