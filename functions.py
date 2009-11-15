@@ -16,7 +16,7 @@ def updateTimeLineListStore(statuses, liststore):
 
         row = liststore.append()
         liststore.set_value (row, 0, pixbuf)
-        liststore.set_value (row, 1, '<span size="small"><b>%s</b> (%s)\n%s\n</span><span size="x-small">%s ago</span>' % (status.user.screen_name, cgi.escape(status.user.name), cgi.escape(status.text), time_ago))
+        liststore.set_value (row, 1, '<span size="medium"><b>%s</b> (%s)\n%s\n</span><span size="x-small">%s ago</span>' % (status.user.screen_name, cgi.escape(status.user.name), cgi.escape(status.text), time_ago))
         liststore.set_value (row, 2, status.user.screen_name)            
         liststore.set_value (row, 3, status.created_at)            
         liststore.set_value (row, 4, status.source)  
@@ -40,7 +40,7 @@ def fetchImageFromUrl(url):
     try:
         _mkdir(tmp_path)
             
-        url = "http://api.iglaset.se/resizely/small/?url=%s" % url
+        url = "http://api.iglaset.se/resizely/crop/50x50/?url=%s" % url
         ext = get_ext(url)
         source = base64.urlsafe_b64encode(hashlib.sha224(url).hexdigest())
         dest = "%s%s" % ('/tmp/kvitter/', source)
