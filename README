@@ -4,4 +4,6 @@ Edit app.py, and change user/password to your twitter account.
 
 You will need PIL, pygtk, pango (sudo apt-get install python-imaging)
 
+If you are getting errors about scanner something, remove the directory simplejson in twitter/ and install simplejson yourself.
+
 etc..
