@@ -1,9 +1,13 @@
-PyGTK Twitter client
+== PyGTK Twitter client ==
 
+= Setup =
 Edit app.py, and change user/password to your twitter account.
 
+= Requirements =
 You will need PIL, pygtk, pango (sudo apt-get install python-imaging)
 
+= Bugs =
 If you are getting errors about scanner something, remove the directory simplejson in twitter/ and install simplejson yourself.
 
-etc..
+= todo =
+ * login window
