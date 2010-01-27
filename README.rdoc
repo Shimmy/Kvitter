@@ -11,3 +11,5 @@ If you are getting errors about scanner something, remove the directory simplejs
 
 == todo 
  * login window
+
+test
